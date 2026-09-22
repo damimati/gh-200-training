@@ -5,9 +5,17 @@ jobs:
     steps:
       - run: echo "Real Niggas shiii" > note.txt
       - run: cat note.txt
+      - uses: actions/upload-artifact@v7
+        with:
+          path: ./note.txt
+          archive: false
+      
 
   two:
     needs: one
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: note.txt
       - run: cat note.txt
